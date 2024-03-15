@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ImoocMerchants
+  ### 因为mysql版本的问题，以及mysql8的密码加密方式问题，耽误了好久
+  ## 需要jdbc和mysql的版本完全一致，以及安装mysql8的时候输入root的密码是明文，系统会加密
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/passbook?useUnicode=true&useSSL=false"
+    username: root
+    password: "12060801"
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: passbook
+    listener:
+      concurrency: 4
+
+server:
+  port: 9527
+
+logging:
+  level: debug
+  file: imooc-merchants.log
