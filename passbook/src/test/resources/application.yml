@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: ImoocPassbook
+  ### 因为mysql版本的问题，以及mysql8的密码加密方式问题，耽误了好久
+  ## 需要jdbc和mysql的版本完全一致，以及安装mysql8的时候输入root的密码是明文，系统会加密
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/passbook?useUnicode=true&useSSL=false"
+    username: root
+    password: "12060801"
+  kafka:
+    bootstrap-servers: localhost:9092
+    ### kafka的消费者组，与kafka的topic不一样
+    consumer:
+      group-id: passbook
+    listener:
+      concurrency: 4
+  data:
+    ## hbase是基于zookeeper的配置，端口号和zookeeper一样
+    # 使用zookeeper内置的
+    hbase:
+      quorum: 127.0.0.1:2181
+      rootDir: file:///usr/local/hbase-1.1.0/data
+      nodeParent: /hbase
+
+    redis:
+      host: localhost
+      port: 6397
+
+server:
+  port: 9528
+
+logging:
+  level: debug
+  file: imooc-passbook.log
